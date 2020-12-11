@@ -209,11 +209,7 @@ return [
 
     'menu' => [
         ['header' => 'ATORES'],
-        [
-            'text' => 'Atores',
-            'url'  => 'atores',
-            'icon' => 'fas fa-fw fa-users',
-        ],
+      
         [
             'text' => 'Clientes',
             'url'  => 'clientes',
@@ -221,12 +217,23 @@ return [
         ],
         
         [
-            'text' => 'Tipo de Serviço',
-            'url'  => 'tiposervicos',
+            'text' => 'Serviços',
+            'url'  => 'servicos',
             'icon' => 'fas fa-fw fa-users',
         ],
         
-
+        [
+            'text' => ' Produtos',
+            'url'  => 'produtos',
+            'icon' => 'fas fa-fw fa-users',
+        ],
+        
+        [
+            'text' => 'Profissionais',
+            'url'  => 'profissionals',
+            'icon' => 'fas fa-fw fa-users',
+        ],
+        
 
         
         // [

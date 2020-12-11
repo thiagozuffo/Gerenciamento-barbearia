@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTipoServicosTable extends Migration
+class CreateServicosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class CreateTipoServicosTable extends Migration
      */
     public function up()
     {
-        Schema::create('tiposervicos', function (Blueprint $table) {
+        Schema::create('servicos', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('nome', 100);
+            $table->string('preco', 100);
             $table->string('descricao', 100);
             $table->timestamps();
         });
@@ -27,6 +29,6 @@ class CreateTipoServicosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tiposervicos');
+        Schema::dropIfExists('servicos');
     }
 }
