@@ -44,6 +44,24 @@ Route::group(['prefix'=>'profissionals', 'where'=>['id'=>'[0-9]+']], function() 
     Route::post('store',       ['as'=>'profissionals.store',   'uses'=>'ProfissionalsController@store'  ]);
 });
 
+Route::group(['prefix'=>'vendaprodutos', 'where'=>['id'=>'[0-9]+']], function() {
+    Route::get('',             ['as'=>'vendaprodutos',         'uses'=>'VendaprodutosController@index'  ]);
+    Route::get('create',       ['as'=>'vendaprodutos.create',  'uses'=>'VendaprodutosController@create' ]);
+    Route::get('{id}/destroy', ['as'=>'vendaprodutos.destroy', 'uses'=>'VendaprodutosController@destroy']);
+    Route::get('{id}/edit',    ['as'=>'vendaprodutos.edit',    'uses'=>'VendaprodutosController@edit'   ]);
+    Route::put('{id}/update',  ['as'=>'vendaprodutos.update',  'uses'=>'VendaprodutosController@update' ]);
+    Route::post('store',       ['as'=>'vendaprodutos.store',   'uses'=>'VendaprodutosController@store'  ]);
+});
+
+Route::group(['prefix'=>'vendaservicos', 'where'=>['id'=>'[0-9]+']], function() {
+    Route::get('',             ['as'=>'vendaservicos',         'uses'=>'VendaservicosController@index'  ]);
+    Route::get('create',       ['as'=>'vendaservicos.create',  'uses'=>'VendaservicosController@create' ]);
+    Route::get('{id}/destroy', ['as'=>'vendaservicos.destroy', 'uses'=>'VendaservicosController@destroy']);
+    Route::get('{id}/edit',    ['as'=>'vendaservicos.edit',    'uses'=>'VendaservicosController@edit'   ]);
+    Route::put('{id}/update',  ['as'=>'vendaservicos.update',  'uses'=>'VendaservicosController@update' ]);
+    Route::post('store',       ['as'=>'vendaservicos.store',   'uses'=>'VendaservicosController@store'  ]);
+});
+
 
 
 Auth::routes();

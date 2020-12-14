@@ -9,3 +9,4 @@ class Profissional extends Model
     protected $table = "profissionals";
     protected $fillable = ['nome', 'profissao', 'descricao'];
 }
+

@@ -1,14 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Profissional;
-use Illuminate\Http\Request;
-use App\Http\Requests\ProfissionalRequest;
 
+use Illuminate\Http\Request;
+use App\Profissional;
+use App\Http\Requests\ProfissionalRequest;
 class ProfissionalsController extends Controller
 {
-        
-	public function index() {
+    public function index() {
 		$profissionals = Profissional::orderBy('nome')->paginate(5);
 		return view('profissionals.index', ['profissionals'=>$profissionals]);
 	}
@@ -31,7 +30,7 @@ class ProfissionalsController extends Controller
 
 	public function edit($id) {
 		$profissional = Profissional::find($id);
-		return view('profissionals.edit', compact(''));
+		return view('profissionals.edit', compact('profissional'));
 	}
 
 	public function update(ProfissionalRequest $request, $id) {

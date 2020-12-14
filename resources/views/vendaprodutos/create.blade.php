@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
 @section('content')
-	<h3>Novo Produto</h3>
+	<h3>Nova Venda de Produto</h3>
 
 	@if($errors->any())
 		<ul class="alert alert-danger">
@@ -11,31 +11,29 @@
 		</ul>
 	@endif
 
-	{!! Form::open(['route'=>'produtos.store']) !!}
-	<div class="form-group">
-			{!! Form::label('nome', 'Nome:') !!}
-			{!! Form::text('nome', null, ['class'=>'form-control', 'required']) !!}
+	{!! Form::open(['route'=>'vendaprodutos.store']) !!}
+
+		<div class="form-group">
+			{!! Form::label('data', 'Data:') !!}
+			{!! Form::date('data', null, ['class'=>'form-control', 'required']) !!}
 		</div>
+
+	
 		<div class="form-group">
 			{!! Form::label('preco', 'Preço:') !!}
 			{!! Form::text('preco', null, ['class'=>'form-control', 'required']) !!}
 		</div>
 
-
-	
-
 		<div class="form-group">
-			{!! Form::label('descricao', 'Descricao:') !!}
-			{!! Form::text('descricao', null, ['class'=>'form-control', 'required']) !!}
+			{!! Form::label('produto_id', 'Produto:') !!}
+			{!! Form::select('produto_id', 
+			\App\Produto::orderBy('nome')->pluck('nome', 'id')->toArray(), null, ['class'=>'form-control', 'required']) !!}
 		</div>
 
-	
-
 		<div class="form-group">
-			{!! Form::submit('Criar Produto', ['class'=>'btn btn-primary']) !!}
+			{!! Form::submit('Criar Venda de Produto', ['class'=>'btn btn-primary']) !!}
 			{!! Form::reset('Limpar', ['class'=>'btn btn-default']) !!}
 		</div>
 
 	{!! Form::close() !!}	
 @stop
-

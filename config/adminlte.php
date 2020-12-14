@@ -208,7 +208,7 @@ return [
     */
 
     'menu' => [
-        ['header' => 'ATORES'],
+        ['header' => 'CADASTROS'],
       
         [
             'text' => 'Clientes',
@@ -233,6 +233,21 @@ return [
             'url'  => 'profissionals',
             'icon' => 'fas fa-fw fa-users',
         ],
+
+        [
+            'text' => 'Venda de Produto',
+            'url'  => 'vendaprodutos',
+            'icon' => 'fas fa-fw fa-users',
+        ],
+
+        [
+            'text' => 'Venda de Serviço',
+            'url'  => 'vendaservicos',
+            'icon' => 'fas fa-fw fa-users',
+        ],
+        
+        
+        
         
 
         

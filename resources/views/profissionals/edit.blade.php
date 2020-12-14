@@ -12,20 +12,26 @@
 	@endif
 
 	{!! Form::open(['route'=> ["profissionals.update", 'id'=>$profissional->id], 'method'=>'put']) !!}
+	
+	<div class="form-group">
+			{!! Form::label('nome', 'Nome:') !!}
+			{!! Form::text('nome', $profissional->nome, ['class'=>'form-control', 'required']) !!}
+		</div>
+
 
 
 		<div class="form-group">
-			{!! Form::label('profissao', 'Endereço:') !!}
+			{!! Form::label('profissao', 'Profissao:') !!}
 			{!! Form::text('profissao', $profissional->profissao, ['class'=>'form-control', 'required']) !!}
 		</div>
 
 		<div class="form-group">
-			{!! Form::label('descricao', 'Telefone:') !!}
+			{!! Form::label('descricao', 'Descrição:') !!}
 			{!! Form::text('descricao', $profissional->descricao, ['class'=>'form-control', 'required']) !!}
 		</div>
 
 		<div class="form-group">
-			{!! Form::submit('Editar Cliente', ['class'=>'btn btn-primary']) !!}
+			{!! Form::submit('Editar Profissional', ['class'=>'btn btn-primary']) !!}
 			{!! Form::reset('Limpar', ['class'=>'btn btn-default']) !!}
 		</div>
 
