@@ -24,11 +24,18 @@ class VendaservicosController extends Controller
 		return redirect()->route('vendaservicos');
 	}
 
-	public function destroy($id) {
-	Vendaservico::find($id)->delete();
-		return redirect()->route('vendaservicos');
-	}
 
+	public function destroy($id) {
+		try{
+		Vendaservico::find($id)->delete();
+		$ret = array('status'=>200, 'msg'=>"null");
+		}catch (\Illuminate\Database\QueryException $e){
+			$ret = array('status'=>500, 'msg'=>$e->getMessage());
+		}catch (\PDOException $e){
+			$ret = array('status'=>500, 'msg'=>$e->getMessage());
+		}
+		return $ret;
+	}
 	public function edit($id) {
 		$vendaservico = Vendaservico::find($id);
 		return view('vendaservicos.edit', compact('vendaservico'));

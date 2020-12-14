@@ -246,6 +246,12 @@ return [
             'icon' => 'fas fa-fw fa-users',
         ],
         
+        [
+            'text' => 'Itens de Venda',
+            'url'  => 'itemvendas',
+            'icon' => 'fas fa-fw fa-users',
+        ],
+        
         
         
         

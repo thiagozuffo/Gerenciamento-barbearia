@@ -23,9 +23,17 @@ class ProfissionalsController extends Controller
 		return redirect()->route('profissionals');
 	}
 
+
 	public function destroy($id) {
+		try{
 		Profissional::find($id)->delete();
-		return redirect()->route('profissionals');
+		$ret = array('status'=>200, 'msg'=>"null");
+		}catch (\Illuminate\Database\QueryException $e){
+			$ret = array('status'=>500, 'msg'=>$e->getMessage());
+		}catch (\PDOException $e){
+			$ret = array('status'=>500, 'msg'=>$e->getMessage());
+		}
+		return $ret;
 	}
 
 	public function edit($id) {
