@@ -8,10 +8,19 @@ use App\Http\Requests\VendaservicoRequest;
 
 class VendaservicosController extends Controller
 {
-    public function index() {
-		$vendaservicos = Vendaservico::orderBy('data')->paginate(5);
+	public function index(Request $filtro) {
+		$filtragem = $filtro->get('desc_filtro');
+        if ($filtragem == null) 
+    		$vendaservicos = Vendaservico::orderBy('data')->paginate(5);
+        else
+            $vendaservicos = Vendaservico::where('data', 'like', '%'.$filtragem.'%')
+        					->orderBy("data")
+        					->paginate(5)
+        					->setpath('vendaservicos?desc_filtro='+$filtragem);
+
 		return view('vendaservicos.index', ['vendaservicos'=>$vendaservicos]);
 	}
+
 
 	public function create() {
 		return view('vendaservicos.create');
@@ -36,8 +45,8 @@ class VendaservicosController extends Controller
 		}
 		return $ret;
 	}
-	public function edit($id) {
-		$vendaservico = Vendaservico::find($id);
+	public function edit(Request $request) {
+		$vendaservico = Vendaservico::find(\Crypt::decrypt($request->get('id')));
 		return view('vendaservicos.edit', compact('vendaservico'));
 	}
 

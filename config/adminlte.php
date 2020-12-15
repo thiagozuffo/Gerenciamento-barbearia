@@ -213,43 +213,47 @@ return [
         [
             'text' => 'Clientes',
             'url'  => 'clientes',
-            'icon' => 'fas fa-fw fa-users',
+            'icon' => 'fas fa-fw fa-chevron-right',
         ],
         
         [
             'text' => 'Serviços',
             'url'  => 'servicos',
-            'icon' => 'fas fa-fw fa-users',
+            'icon' => 'fas fa-fw fa-chevron-right',
         ],
         
         [
             'text' => ' Produtos',
             'url'  => 'produtos',
-            'icon' => 'fas fa-fw fa-users',
+            'icon' => 'fas fa-fw fa-chevron-right',
         ],
         
         [
             'text' => 'Profissionais',
             'url'  => 'profissionals',
-            'icon' => 'fas fa-fw fa-users',
+            'icon' => 'fas fa-fw fa-chevron-right',
         ],
-
+        
+        ['header' => 'VENDAS'],
+      
         [
             'text' => 'Venda de Produto',
             'url'  => 'vendaprodutos',
-            'icon' => 'fas fa-fw fa-users',
+            'icon' => 'fas fa-fw fa-check',
         ],
 
         [
             'text' => 'Venda de Serviço',
             'url'  => 'vendaservicos',
-            'icon' => 'fas fa-fw fa-users',
+            'icon' => 'fas fa-fw fa-check',
         ],
-        
+
+        ['header' => 'ITENS'],
+      
         [
             'text' => 'Itens de Venda',
             'url'  => 'itemvendas',
-            'icon' => 'fas fa-fw fa-users',
+            'icon' => 'fas fa-fw fa-clone',
         ],
         
         

@@ -7,10 +7,19 @@ use App\Vendaproduto;
 use App\Http\Requests\VendaprodutoRequest;
 class VendaprodutosController extends Controller
 {
-    public function index() {
-		$vendaprodutos = Vendaproduto::orderBy('data')->paginate(5);
+	public function index(Request $filtro) {
+		$filtragem = $filtro->get('desc_filtro');
+        if ($filtragem == null) 
+    		$vendaprodutos = Vendaproduto::orderBy('data')->paginate(10);
+        else
+            $vendaprodutos = Vendaproduto::where('data', 'like', '%'.$filtragem.'%')
+        					->orderBy("data")
+        					->paginate(10)
+        					->setpath('vendaprodutos?desc_filtro='+$filtragem);
+
 		return view('vendaprodutos.index', ['vendaprodutos'=>$vendaprodutos]);
 	}
+
 
 	public function create() {
 		return view('vendaprodutos.create');
@@ -36,8 +45,8 @@ class VendaprodutosController extends Controller
 		return $ret;
 	}
 
-	public function edit($id) {
-		$vendaproduto = Vendaproduto::find($id);
+	public function edit(Request $request) {
+		$vendaproduto = Vendaproduto::find(\Crypt::decrypt($request->get('id')));
 		return view('vendaprodutos.edit', compact('vendaproduto'));
 	}
 

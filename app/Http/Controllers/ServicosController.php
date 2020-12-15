@@ -9,10 +9,19 @@ use App\Http\Requests\ServicoRequest;
 class ServicosController extends Controller
 {
      
-	public function index() {
-		$servicos = Servico::orderBy('nome')->paginate(5);
+	public function index(Request $filtro) {
+		$filtragem = $filtro->get('desc_filtro');
+        if ($filtragem == null) 
+    		$servicos = Servico::orderBy('nome')->paginate(5);
+        else
+            $servicos = Servico::where('nome', 'like', '%'.$filtragem.'%')
+        					->orderBy("nome")
+        					->paginate(5)
+        					->setpath('servicos?desc_filtro='+$filtragem);
+
 		return view('servicos.index', ['servicos'=>$servicos]);
 	}
+
 
 	public function create() {
 		return view('servicos.create');
@@ -38,11 +47,10 @@ class ServicosController extends Controller
 		return $ret;
 	}
 
-	public function edit($id) {
-		$servico = Servico::find($id);
+	public function edit(Request $request) {
+		$servico = Servico::find(\Crypt::decrypt($request->get('id')));
 		return view('servicos.edit', compact('servico'));
 	}
-
 	public function update(ServicoRequest $request, $id) {
 		Servico::find($id)->update($request->all());
 		return redirect()->route('servicos');

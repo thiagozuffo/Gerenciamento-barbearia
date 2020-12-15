@@ -35,6 +35,18 @@ class ItemvendasController extends Controller
 
         return view('itemvendas.index', ['itemvendas'=>$itemvendas]);
     }
+
+    public function destroy($id) {
+		try{
+		Itemvenda::find($id)->delete();
+		$ret = array('status'=>200, 'msg'=>"null");
+		}catch (\Illuminate\Database\QueryException $e){
+			$ret = array('status'=>500, 'msg'=>$e->getMessage());
+		}catch (\PDOException $e){
+			$ret = array('status'=>500, 'msg'=>$e->getMessage());
+		}
+		return $ret;
+	}
 }
 
 

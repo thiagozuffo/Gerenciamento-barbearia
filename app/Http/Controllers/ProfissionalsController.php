@@ -7,10 +7,19 @@ use App\Profissional;
 use App\Http\Requests\ProfissionalRequest;
 class ProfissionalsController extends Controller
 {
-    public function index() {
-		$profissionals = Profissional::orderBy('nome')->paginate(5);
+	public function index(Request $filtro) {
+		$filtragem = $filtro->get('desc_filtro');
+        if ($filtragem == null) 
+    		$profissionals = Profissional::orderBy('nome')->paginate(5);
+        else
+            $profissionals = Profissional::where('nome', 'like', '%'.$filtragem.'%')
+        					->orderBy("nome")
+        					->paginate(5)
+        					->setpath('profissionals?desc_filtro='+$filtragem);
+
 		return view('profissionals.index', ['profissionals'=>$profissionals]);
 	}
+
 
 	public function create() {
 		return view('profissionals.create');
@@ -36,8 +45,9 @@ class ProfissionalsController extends Controller
 		return $ret;
 	}
 
-	public function edit($id) {
-		$profissional = Profissional::find($id);
+
+	public function edit(Request $request) {
+		$profissional = Profissional::find(\Crypt::decrypt($request->get('id')));
 		return view('profissionals.edit', compact('profissional'));
 	}
 

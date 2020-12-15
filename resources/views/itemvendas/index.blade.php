@@ -10,6 +10,7 @@
 	    			<th>Cliente</th>
 	    			<th>Descricao</th>
 	    			<th>Produtos</th>
+                    <th>Ações</th>
 	    		</tr>
 	    	</thead>
 
@@ -23,6 +24,9 @@
 				        		<li>{{ $a->produto_id }}</li>
 				        	@endforeach
 				        </td>
+                    <td>
+                    <a href="#" onclick="return ConfirmaExclusao({{$itemvenda->id}})"  class="btn-sm btn-danger">Remover</a>
+                    </td>
 				    </tr>
 			    @endforeach
 			</tbody>

@@ -11,10 +11,19 @@ class ProdutosController extends Controller
     //
 
       
-	public function index() {
-		$produtos = Produto::orderBy('nome')->paginate(5);
+	public function index(Request $filtro) {
+		$filtragem = $filtro->get('desc_filtro');
+        if ($filtragem == null) 
+    		$produtos = Produto::orderBy('nome')->paginate(5);
+        else
+            $produtos = Produto::where('nome', 'like', '%'.$filtragem.'%')
+        					->orderBy("nome")
+        					->paginate(5)
+        					->setpath('produtos?desc_filtro='+$filtragem);
+
 		return view('produtos.index', ['produtos'=>$produtos]);
 	}
+
 
 	public function create() {
 		return view('produtos.create');
@@ -38,13 +47,10 @@ class ProdutosController extends Controller
 		}
 		return $ret;
 	}
-	public function edit($id) {
-		$produto = Produto::find($id);
-		return view('produtos.edit', compact('produto'));
-	}
 
-	public function update(ProdutoRequest $request, $id) {
-		Produto::find($id)->update($request->all());
-		return redirect()->route('produtos');
+
+	public function edit(Request $request) {
+		$produto = Produto::find(\Crypt::decrypt($request->get('id')));
+		return view('produtos.edit', compact('produto'));
 	}
 }
