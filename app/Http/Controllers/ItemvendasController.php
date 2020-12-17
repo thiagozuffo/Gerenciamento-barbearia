@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Produto;
-use App\ItemvendaProduto;
 use App\Itemvenda;
+use App\ItemvendaProduto;
+use Illuminate\Http\Request;
+use App\Http\Requests\ItemvendaRequest;
 
 class ItemvendasController extends Controller
 {
@@ -34,6 +35,31 @@ class ItemvendasController extends Controller
         $itemvendas = Itemvenda::all();
 
         return view('itemvendas.index', ['itemvendas'=>$itemvendas]);
+    }
+   public function edit(Request $request) {
+        $itemvenda = Itemvenda::find(\Crypt::decrypt($request->get('id')));
+        return view('itemvendas.edit', compact('itemvenda'));
+    }
+
+
+    public function update(EventoRequest $request, $id) {
+        Itemvenda::find($id)->update([
+            'cliente'=>$request->get('cliente'),
+            'descricao'=>$request->get('descricao'),
+            'info'=>$request->get('info'),
+        ]);
+
+        ItemVendaproduto::where('itemvenda_id', '=', $id)->delete();
+
+        $produtos = $request->produtos;
+        foreach($produtos as $s => $value) {
+            ItemvendaProduto::create([
+                'itemvenda_id'=>$id,
+                'produto_id'=>$produtos[$s],
+            ]);
+        }
+
+        return redirect()->route('itemvendas');
     }
 
     public function destroy($id) {

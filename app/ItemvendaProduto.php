@@ -10,7 +10,7 @@ class ItemvendaProduto extends Model
     protected $fillable = ['itemvenda_id', 'produto_id'];
 
 
-    public function ator(){
+    public function produto(){
         return $this->belongsTo("App\Produto");
     }
 }
