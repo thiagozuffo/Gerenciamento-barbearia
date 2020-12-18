@@ -53,7 +53,7 @@ class ProdutosController extends Controller
 		$produto = Produto::find(\Crypt::decrypt($request->get('id')));
 		return view('produtos.edit', compact('produto'));
 	}
-	public function update(ServicoRequest $request, $id) {
+	public function update(ProdutoRequest $request, $id) {
 		Produto::find($id)->update($request->all());
 		return redirect()->route('produtos');
 	}
