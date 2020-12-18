@@ -27,10 +27,9 @@
 
 						<td>
 						<a href="{{ route('itemvendas.edit', ['id'=>\Crypt::encrypt($itemvenda->id)]) }}" class="btn-sm btn-success">Editar</a>	
-						<a href="#" onclick="return ConfirmaExclusao('{{ \Crypt::encrypt($itemvenda->id) }}')" class="btn-sm btn-danger">Remover</a>					</td>
-                    <td>
-                  
-                    </td>
+						<a href="#" onclick="return ConfirmaExclusao({{$itemvenda->id}})"  class="btn-sm btn-danger">Remover</a>
+							</td>
+     
 				    </tr>
 			    @endforeach
 			</tbody>
@@ -39,3 +38,6 @@
 	</div>
 @stop
 
+@section('table-delete')
+"itemvendas"
+@endsection

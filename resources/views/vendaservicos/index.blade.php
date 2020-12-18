@@ -26,7 +26,7 @@
 		<tbody>
 			@foreach($vendaservicos as $vendaservico)
 				<tr>
-					<td>{{ $vendaservico->data }}</td>
+				<td>{{ Carbon\Carbon::parse($vendaservico->data)->format('d/m/Y') }}</td>
                     <td>{{ $vendaservico->preco }}</td>
                     <td>{{ $vendaservico->servico->nome }}</td>
 

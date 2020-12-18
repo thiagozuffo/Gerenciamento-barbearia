@@ -14,8 +14,8 @@ class VendaprodutosController extends Controller
         else
             $vendaprodutos = Vendaproduto::where('data', 'like', '%'.$filtragem.'%')
         					->orderBy("data")
-        					->paginate(10)
-        					->setpath('vendaprodutos?desc_filtro='+$filtragem);
+        					->paginate(10);
+        					//->setpath('vendaprodutos?desc_filtro='+$filtragem);
 
 		return view('vendaprodutos.index', ['vendaprodutos'=>$vendaprodutos]);
 	}

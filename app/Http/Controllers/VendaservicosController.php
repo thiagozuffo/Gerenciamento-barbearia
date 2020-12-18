@@ -15,8 +15,8 @@ class VendaservicosController extends Controller
         else
             $vendaservicos = Vendaservico::where('data', 'like', '%'.$filtragem.'%')
         					->orderBy("data")
-        					->paginate(5)
-        					->setpath('vendaservicos?desc_filtro='+$filtragem);
+        					->paginate(5);
+        					//->setpath('vendaservicos?desc_filtro='+$filtragem);
 
 		return view('vendaservicos.index', ['vendaservicos'=>$vendaservicos]);
 	}

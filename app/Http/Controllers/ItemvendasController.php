@@ -36,20 +36,23 @@ class ItemvendasController extends Controller
 
         return view('itemvendas.index', ['itemvendas'=>$itemvendas]);
     }
+
+
    public function edit(Request $request) {
         $itemvenda = Itemvenda::find(\Crypt::decrypt($request->get('id')));
         return view('itemvendas.edit', compact('itemvenda'));
     }
 
 
-    public function update(EventoRequest $request, $id) {
+    public function update(ItemvendaRequest $request) {
+        $id = \Crypt::decrypt($request->get('id'));
         Itemvenda::find($id)->update([
             'cliente'=>$request->get('cliente'),
             'descricao'=>$request->get('descricao'),
-            'info'=>$request->get('info'),
+         
         ]);
 
-        ItemVendaproduto::where('itemvenda_id', '=', $id)->delete();
+        ItemvendaProduto::where('itemvenda_id', '=', $id)->delete();
 
         $produtos = $request->produtos;
         foreach($produtos as $s => $value) {
@@ -61,8 +64,8 @@ class ItemvendasController extends Controller
 
         return redirect()->route('itemvendas');
     }
-
-    public function destroy($id) {
+  
+	public function destroy($id) {
 		try{
 		Itemvenda::find($id)->delete();
 		$ret = array('status'=>200, 'msg'=>"null");
@@ -73,7 +76,9 @@ class ItemvendasController extends Controller
 		}
 		return $ret;
 	}
+
 }
+
 
 
 

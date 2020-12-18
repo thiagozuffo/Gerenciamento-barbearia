@@ -16,8 +16,8 @@ class ServicosController extends Controller
         else
             $servicos = Servico::where('nome', 'like', '%'.$filtragem.'%')
         					->orderBy("nome")
-        					->paginate(5)
-        					->setpath('servicos?desc_filtro='+$filtragem);
+        					->paginate(5);
+        					//->setpath('servicos?desc_filtro='+$filtragem);
 
 		return view('servicos.index', ['servicos'=>$servicos]);
 	}

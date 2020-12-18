@@ -11,7 +11,7 @@
         </ul>
     @endif
     
-    {!! Form::open(['route'=> ["itemvendas.update", 'id'=>$itemvenda->id], 'method'=>'put']) !!}
+    {!! Form::open(['route'=> ["itemvendas.update", 'id'=>\Crypt::encrypt($itemvenda->id)], 'method'=>'put']) !!}
 
     <div class="form-group">
             {!! Form::label('cliente', 'Cliente:') !!}
@@ -39,7 +39,7 @@
         </div>
         <br>
 
-        <button type="button" style="float:right;" class="add_field_button btn btn-default">Adicionar Sala</button>
+        <button type="button" style="float:right;" class="add_field_button btn btn-default">Adicionar Produto</button>
         <br>
         <hr/>
 

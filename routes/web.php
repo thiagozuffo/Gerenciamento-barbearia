@@ -64,13 +64,12 @@ Route::group(['prefix'=>'vendaservicos', 'where'=>['id'=>'[0-9]+']], function() 
 });
 
 Route::group(['prefix'=>'itemvendas', 'where'=>['id'=>'[0-9]+']], function() {
-    Route::get('',             ['as'=>'itemvendas',         'uses'=>'ItemvendasController@index'  ]);
+    Route::any('',             ['as'=>'itemvendas',         'uses'=>'ItemvendasController@index'  ]);
     Route::get('create',       ['as'=>'itemvendas.create',  'uses'=>'ItemvendasController@create' ]);
     Route::post('store',       ['as'=>'itemvendas.store',   'uses'=>'ItemvendasController@store'  ]);
     Route::get('edit',    ['as'=>'itemvendas.edit',    'uses'=>'ItemvendasController@edit'   ]);
-    Route::put('{id}/update',  ['as'=>'itemvendas.update',  'uses'=>'VendaservicosController@update' ]);
+    Route::put('update',  ['as'=>'itemvendas.update',  'uses'=>'ItemvendasController@update' ]);
     Route::get('{id}/destroy', ['as'=>'itemvendas.destroy', 'uses'=>'ItemvendasController@destroy']);
-
 });
 
 

@@ -14,8 +14,8 @@ class ProfissionalsController extends Controller
         else
             $profissionals = Profissional::where('nome', 'like', '%'.$filtragem.'%')
         					->orderBy("nome")
-        					->paginate(5)
-        					->setpath('profissionals?desc_filtro='+$filtragem);
+        					->paginate(5);
+        					//->setpath('profissionals?desc_filtro='+$filtragem);
 
 		return view('profissionals.index', ['profissionals'=>$profissionals]);
 	}
