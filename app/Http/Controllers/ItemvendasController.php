@@ -31,12 +31,18 @@ class ItemvendasController extends Controller
         return redirect()->route('itemvendas');
     }
 
-    public function index(){
-        $itemvendas = Itemvenda::all();
+    public function index (Request $filtro) {
+		$filtragem = $filtro->get('desc_filtro');
+        if ($filtragem == null) 
+    		$itemvendas = Itemvenda::orderBy('cliente')->paginate(10);
+        else
+            $itemvendas = Itemvenda::where('cliente', 'like', '%'.$filtragem.'%')
+        					->orderBy('cliente')
+        					->paginate(10);
+        					//->setpath('itemvendas?desc_filtro='+$filtragem);
 
-        return view('itemvendas.index', ['itemvendas'=>$itemvendas]);
-    }
-
+		return view('itemvendas.index', ['itemvendas'=>$itemvendas]);
+	}
 
    public function edit(Request $request) {
         $itemvenda = Itemvenda::find(\Crypt::decrypt($request->get('id')));
