@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
 @section('content')
-	<h3>Editando Venda da Data: {{ $vendaservico->data  }} </h3>
+	<h3>Editando Venda da Data: {{ Carbon\Carbon::parse($vendaservico->data)->format('d/m/Y') }} </h3>
 
 	@if($errors->any())
 		<ul class="alert alert-danger">
@@ -28,7 +28,7 @@
 		<div class="form-group">
 			{!! Form::label('servico_id', 'Serviço:') !!}
 			{!! Form::select('servico_id', 
-			\App\Produto::orderBy('nome')->pluck('nome', 'id')->toArray(), $vendaservico->servico_id, ['class'=>'form-control', 'required']) !!}
+			\App\Servico::orderBy('nome')->pluck('nome', 'id')->toArray(), $vendaservico->servico_id, ['class'=>'form-control', 'required']) !!}
 		</div>
 
 		<div class="form-group">

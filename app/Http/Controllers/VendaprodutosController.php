@@ -10,11 +10,11 @@ class VendaprodutosController extends Controller
 	public function index(Request $filtro) {
 		$filtragem = $filtro->get('desc_filtro');
         if ($filtragem == null) 
-    		$vendaprodutos = Vendaproduto::orderBy('data')->paginate(10);
+    		$vendaprodutos = Vendaproduto::orderBy('data')->paginate(5);
         else
             $vendaprodutos = Vendaproduto::where('data', 'like', '%'.$filtragem.'%')
         					->orderBy("data")
-        					->paginate(10);
+        					->paginate(5);
         					//->setpath('vendaprodutos?desc_filtro='+$filtragem);
 
 		return view('vendaprodutos.index', ['vendaprodutos'=>$vendaprodutos]);

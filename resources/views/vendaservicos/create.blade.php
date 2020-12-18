@@ -13,7 +13,7 @@
 
 	{!! Form::open(['route'=>'vendaservicos.store']) !!}
 
-		<div class="form-group">
+6+62		<div class="form-group">
 			{!! Form::label('data', 'Data:') !!}
 			{!! Form::date('data', null, ['class'=>'form-control', 'required']) !!}
 		</div>

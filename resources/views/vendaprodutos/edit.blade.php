@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
 @section('content')
-	<h3>Editando Venda da Data: {{ $vendaproduto->data  }} </h3>
+	<h3>Editando Venda da Data: {{ Carbon\Carbon::parse($vendaproduto->data)->format('d/m/Y')  }} </h3>
 
 	@if($errors->any())
 		<ul class="alert alert-danger">

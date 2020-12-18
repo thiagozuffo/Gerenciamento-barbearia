@@ -34,11 +34,11 @@ class ItemvendasController extends Controller
     public function index (Request $filtro) {
 		$filtragem = $filtro->get('desc_filtro');
         if ($filtragem == null) 
-    		$itemvendas = Itemvenda::orderBy('cliente')->paginate(10);
+    		$itemvendas = Itemvenda::orderBy('cliente')->paginate(5);
         else
             $itemvendas = Itemvenda::where('cliente', 'like', '%'.$filtragem.'%')
         					->orderBy('cliente')
-        					->paginate(10);
+        					->paginate(5);
         					//->setpath('itemvendas?desc_filtro='+$filtragem);
 
 		return view('itemvendas.index', ['itemvendas'=>$itemvendas]);
